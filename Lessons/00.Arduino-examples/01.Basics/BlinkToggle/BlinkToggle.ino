@@ -1,5 +1,5 @@
 /**
- * @file AlternativeBlink.ino
+ * @file BlinkToggle.ino
  * @version 1.0
  *
  * @section License
