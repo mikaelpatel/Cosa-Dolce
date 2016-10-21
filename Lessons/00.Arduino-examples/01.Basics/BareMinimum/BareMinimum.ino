@@ -16,7 +16,16 @@
  * Lesser General Public License for more details.
  *
  * @section Description
- * The bare minimum empty sketch.
+ * The bare minimum empty sketch. The setup() and loop() functions
+ * are optional in Cosa.
+ *
+ *  void setup()
+ *  {
+ *  }
+ *
+ *  void loop()
+ *  {
+ *  }
  *
  * @section Note
  * While the Arduino core implicity includes all the header files,
@@ -28,13 +37,3 @@
  *
  * This file is part of the Cosa Dolce teaching support project.
  */
-
-void setup()
-{
-  // Initiate sketch components (executed once on start)
-}
-
-void loop()
-{
-  // Repeated sketch code
-}
