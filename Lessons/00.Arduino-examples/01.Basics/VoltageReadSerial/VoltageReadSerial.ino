@@ -46,7 +46,6 @@
 #include "Cosa/AnalogPin.hh"
 #include "Cosa/UART.hh"
 #include "Cosa/IOStream.hh"
-#include "Cosa/RTT.hh"
 
 AnalogPin sensor(Board::A0);
 IOStream ios(&uart);
@@ -54,7 +53,7 @@ IOStream ios(&uart);
 void setup()
 {
   uart.begin(9600);
-  RTT::begin();
+  AnalogPin::powerup();
 }
 
 void loop()

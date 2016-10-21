@@ -46,7 +46,6 @@
  */
 
 #include "Cosa/PWMPin.hh"
-#include "Cosa/RTT.hh"
 
 PWMPin led(Board::PWM3);
 int brightness = 0;
@@ -54,7 +53,6 @@ int fadeAmount = 5;
 
 void setup()
 {
-  RTT::begin();
   led.begin();
 }
 
