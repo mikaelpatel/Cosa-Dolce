@@ -1,5 +1,5 @@
 /**
- * @file Blink.ino
+ * @file BlinkAssignment.ino
  * @version 1.0
  *
  * @section License
@@ -37,8 +37,8 @@ OutputPin led(Board::LED);
 
 void loop()
 {
-  led.write(1);
+  led = 1;
   delay(1000);
-  led.write(0);
+  led = 0;
   delay(1000);
 }
