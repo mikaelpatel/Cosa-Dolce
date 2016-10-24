@@ -23,7 +23,7 @@
  *
  * @section Circuit
  * Built-in LED attached from pin D13 to ground, pushbutton attached
- * to pin D2 from +5V, 10K resistor attached to pin 2 from ground.
+ * to pin D2 from +5V, 10K resistor attached to pin D2 from ground.
  * Note: on most Arduinos there is already an LED on the board
  * attached to pin D13.
  *
@@ -43,11 +43,11 @@
  * This file is part of the Cosa Dolce teaching support project.
  */
 
-#include "Button.h"
+#include "Debounce.h"
 #include "Cosa/OutputPin.hh"
 #include "Cosa/RTT.hh"
 
-Button button(Board::D2);
+Debounce button(Board::D2);
 OutputPin led(Board::LED);
 
 void setup()
@@ -57,5 +57,5 @@ void setup()
 
 void loop()
 {
-  if (button.pushed()) led.toggle();
+  if (button.released()) led.toggle();
 }

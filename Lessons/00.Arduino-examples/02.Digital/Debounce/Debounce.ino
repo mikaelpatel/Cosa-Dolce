@@ -23,7 +23,7 @@
  *
  * @section Circuit
  * Built-in LED attached from pin D13 to ground, pushbutton attached
- * to pin D2 from +5V, 10K resistor attached to pin 2 from ground.
+ * to pin D2 from +5V, 10K resistor attached to pin D2 from ground.
  * Note: on most Arduinos there is already an LED on the board
  * attached to pin D13.
  *
@@ -50,11 +50,15 @@
 InputPin button(Board::D2);
 OutputPin led(Board::LED, 1);
 
-bool buttonState;
-bool lastButtonReading = 0;
+// Debounced button state
+bool buttonState = false;
+bool previousButtonReading = false;
 
-uint32_t lastDebounceMillis = 0;
-uint32_t debounceDelayMillis = 50;
+// Latest debounce time in milli-seconds
+uint32_t previousDebounceMillis = 0;
+
+// Debounce delay in in milli-seconds
+const uint32_t DEBOUNCE_DELAY_MILLIS = 50;
 
 void setup()
 {
@@ -63,18 +67,29 @@ void setup()
 
 void loop()
 {
+  // Get current clock and button pin
   uint32_t currentMillis = RTT::millis();
   bool reading = button;
-  if (reading != lastButtonReading) {
-    lastDebounceMillis = currentMillis;
+
+  // Restart the debounce timer if button pin changed
+  if (reading != previousButtonReading) {
+    previousDebounceMillis = currentMillis;
   }
-  else if ((currentMillis - lastDebounceMillis) > debounceDelayMillis) {
+
+  // Check if the debounce delay has expired
+  else if ((currentMillis - previousDebounceMillis) > DEBOUNCE_DELAY_MILLIS) {
+
+    // Check the button state did actually change
     if (reading != buttonState) {
       buttonState = reading;
+
+      // Toggle LED on rising transition of button
       if (buttonState) {
-	led.toggle();
+        led.toggle();
       }
     }
   }
-  lastButtonReading = reading;
+
+  // Save the button pin reading
+  previousButtonReading = reading;
 }

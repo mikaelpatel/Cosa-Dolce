@@ -21,6 +21,9 @@
  * other code can run at the same time without being interrupted by
  * the LED code. Uses the Real-Time Timer (RTT) for millis().
  *
+ * Please note the rewrite uses a function, timeToBlink(), to abstract
+ * the blink time handling and increase readability.
+ *
  * @section Circuit
  * LED attached from pin D13 to ground. Note: on most Arduinos, there
  * is already an LED on the board that's attached to pin D13, so no
@@ -36,8 +39,25 @@
 #include "Cosa/RTT.hh"
 
 OutputPin led(Board::LED);
+
+// Blink interval in milli-seconds
+const uint32_t BLINK_INTERVAL_MILLIS = 1000L;
+
+// Latest blink time in milli-seconds
 uint32_t previousBlinkMillis = 0;
-const uint32_t blinkInterval = 1000L;
+
+/**
+ * Return true if the blink time interval has expired otherwise false.
+ * @return bool.
+ */
+bool timeToBlink()
+{
+  uint32_t currentMillis = RTT::millis();
+  if ((currentMillis - previousBlinkMillis) < BLINK_INTERVAL_MILLIS)
+    return (false);
+  previousBlinkMillis = currentMillis;
+  return (true);
+}
 
 void setup()
 {
@@ -46,9 +66,5 @@ void setup()
 
 void loop()
 {
-  uint32_t currentMillis = RTT::millis();
-  if ((currentMillis - previousBlinkMillis) >= blinkInterval) {
-    previousBlinkMillis = currentMillis;
-    led.toggle();
-  }
+  if (timeToBlink()) led.toggle();
 }
