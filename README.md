@@ -22,4 +22,5 @@ selecting one of the Cosa boards in the Tools>Board menu.
 
 # Note
 
-This an on-going project and new material will be added periodically.
+This an on-going project and new material will be added from time to
+time.
