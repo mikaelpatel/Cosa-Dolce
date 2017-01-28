@@ -1,9 +1,9 @@
 # Cosa-Dolce
 
-The Cosa Dolce education and teaching support material. This
+This is the Cosa Dolce education and teaching support material. The
 repository contains tutorial presentations with example sketches.
 
-The lessons start with an introduction of Cosa by rewriting of the
+The lessons start with an introduction to Cosa by rewriting of the
 examples sketches found in the Arduino IDE.
 
 # Install
@@ -17,10 +17,10 @@ Download and unzip the Cosa-Dolce library into your sketchbook
 directory. Rename from Cosa-Dolce-master to Cosa-Dolce.
 
 The Cosa-Dolce examples should be found in the Arduino IDE
-File>Sketchbook menu. Open an example sketch. Select the Cosa core by
-selecting one of the Cosa boards in the Tools>Board menu.
+File>Example menu. Open an example sketch. Select the Cosa core by
+selecting one of the boards supported by Cosa in the Tools>Board menu.
 
 # Note
 
-This an on-going project and new material will be added from time to
-time.
+This is an on-going project, New material will be added from time
+to time.
